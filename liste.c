@@ -9,8 +9,19 @@ struct le {
 typedef struct le listenelement;
 typedef listenelement * list;
 
-int insert();
-int insert_pos();
+
+int insert(); //adds element with value v to FIRST position of list 1
+int insert_pos(); //adds element with value v to position 'pos' of list 1
+int print_list(); //prints ALL elements of list
+int length();//counts ALL elements of list 1
+
+int delete_head(); //deletes FIRST element of list 1
+int delete_elem(); //deletes ALL elements WITH value e from list 1
+int delete_all(); //deletes ALL elements from list 1
+int alles_weg();
+
+int sort(); //sort list 1 with insertionSort
+
 
 
 void insert(int v,list *l){
@@ -70,6 +81,10 @@ int delete_head(list * l) {
 								return 0;
 }
 
+int delete_elem(int e, list * l) {
+
+}
+
 void delete_all(list l) {
 								list next;
 								while (l != NULL) {
@@ -86,16 +101,20 @@ void delete_all(list l) {
 
         delete_head(l);
     }
+   }
+
+   void alles_weg(list *l){ //für fehlerbehaftete vorlesungsversion
+        while(*l != NULL) {
+                delete_head(l);
+        }
    }*/
 
+int sort(int m, list * l)
+{
 
-void alles_weg(list *l){ //für fehlerbehaftete vorlesungsversion
-								while(*l != NULL) {
-																delete_head(l);
-								}
 }
 
-main(){
+int main(){
 								//listenkopf erstellen
 								listenelement *liste;
 								liste=malloc(sizeof(listenelement));
