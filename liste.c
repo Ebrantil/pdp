@@ -10,15 +10,14 @@ typedef struct le listenelement;
 typedef listenelement * list;
 
 
-int insert(); //adds element with value v to FIRST position of list 1
-int insert_pos(); //adds element with value v to position 'pos' of list 1
-int print_list(); //prints ALL elements of list
+void insert(); //adds element with value v to FIRST position of list 1
+void insert_pos(); //adds element with value v to position 'pos' of list 1
+void print_list(); //prints ALL elements of list
 int length();//counts ALL elements of list 1
 
 int delete_head(); //deletes FIRST element of list 1
 int delete_elem(); //deletes ALL elements WITH value e from list 1
-int delete_all(); //deletes ALL elements from list 1
-int alles_weg();
+void delete_all(); //deletes ALL elements from list 1
 
 int sort(); //sort list 1 with insertionSort
 
@@ -126,20 +125,24 @@ int main(){
 
 
 								//test length function
-								printf("\nlaenge: %d \n",length(liste));
+								printf("\n\nElement(e) in der Liste: %d\n",length(liste));
+
 								// test insert function
 								insert(1,&liste);
 								insert(5,&liste);
-								printf("\n2 elemente links angefügt:");
-								print_list(liste);
-								//test delete head
-								delete_head(&liste);
-								printf("\nkopf geloescht:");
-								print_list(liste);
-								//test delete_all
-								//delete_all(liste);
-								alles_weg(&liste);
-								printf("\nliste geloescht:");
+								printf("\n2 Elemente links angefuegt:\n");
+								printf("---------------------------");
 								print_list(liste);
 
+								//test delete head
+								delete_head(&liste);
+								printf("\n\nListenkopf geloescht:\n");
+								printf("---------------------------");
+								print_list(liste);
+
+								//test delete_all
+								delete_all(liste);
+								printf("\n\nAlle Listeneemete geloescht:\n");
+								printf("---------------------------");
+								print_list(liste);
 }
