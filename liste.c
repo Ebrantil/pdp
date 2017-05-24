@@ -83,7 +83,24 @@ int delete_head(list * l) {
 }
 
 int delete_elem(int e, list * l) {
-    return 0;
+    list  old;
+    int z=-1;   //speichert ausgabewert 0 falls gelöscht -1 falls e nicht in Liste
+    
+    while(*l!=NULL){
+        
+        if ((*l)->value==e){   //vorkommen aufgespürt
+            z=0;
+            old=*l;     //merke zeiger auf zu löschendes element
+            *l=old->next;                //verknüpfe vorgänger mt nachfolger
+           
+            free(old);     //lösche altes element
+   
+        }
+        else l=&(*l)->next;   // gehe weiter
+        
+    }
+    
+    return z;
 }
 
 void delete_all(list l) {
@@ -124,17 +141,38 @@ int main(){
 								// test insert function
     insert(1,&Liste);
     insert(5,&Liste);
-    printf("\n2 Elemente links angefuegt:\n");
-    printf("---------------------------");
+    insert(1,&Liste);
+    insert(3,&Liste);
+    insert(2,&Liste);
+    insert(1,&Liste);
+    
+    
+    
+    
+    
+    printf("\n6 Elemente links angefuegt:\n");
+    
     print_list(Liste);
 
+    //test delete_elem
+    printf("\n\ncall delete_elem()");
+     delete_elem(1,&Liste);
+     printf("\nalle 1en gelöscht:\n");
+     printf("---------------------------");
+     print_list(Liste);
+
+    
+    
+    
 								//test delete head
     delete_head(&Liste);
     printf("\n\nListenkopf geloescht:\n");
     printf("---------------------------");
     print_list(Liste);
 
-								//test delete_all    , Bei delete_all muss noch manuell Liste =NULL gesetzt werden! will man das nicht, kkann man alles_weg nehmen
+    
+    
+								//test delete_all    , Bei delete_all muss noch manuell Liste =NULL gesetzt werden! will man das nicht, kann man alles_weg nehmen
     delete_all(Liste);
     printf("\n\nAlle Listenelemete geloescht:\n");
     printf("---------------------------");
