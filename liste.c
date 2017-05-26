@@ -4,24 +4,21 @@
 
 struct le {
     int value;
-    struct le * next;
+    struct le *next;
 };
 
 typedef struct le listenelement;
-typedef listenelement * list;
+typedef listenelement *list;
 
-
-void insert(); //adds element with value v to FIRST position of list 1
-int insert_pos(); //adds element with value v to position 'pos' of list 1
+void insert(); //adds element with value v to FIRST position of list
+int insert_pos(); //adds element with value v to position 'pos' of list
 void print_list(); //prints ALL elements of list
-int length();//counts ALL elements of list 1
-
-int delete_head(); //deletes FIRST element of list 1
-int delete_elem(); //deletes ALL elements WITH value e from list 1
-void delete_all(); //deletes ALL elements from list 1
-
+int length();//counts ALL elements of list
+int delete_head(); //deletes FIRST element of list
+int delete_elem(); //deletes ALL elements WITH value e from list
+void delete_all(); //deletes ALL elements from list
 int sort(); //sort list 1 with insertionSort
-
+void sortedInsert(struct le**, struct le*); //part of insertion sort
 
 
 void insert(int v,list *l){
@@ -31,7 +28,6 @@ void insert(int v,list *l){
     new->next=*l;
     *l=new;
 }
-
 
 int insert_pos(int v, int pos, list * l){
     if (pos==0){     //falls vorne angehängt wird, kann insert() benutzt werden
@@ -52,8 +48,6 @@ int insert_pos(int v, int pos, list * l){
             
     return 0;   
 }
-
-
 
 void print_list(list l) {       //gibt Werte und pointer aus
     if (l == NULL) printf("\nleer");
@@ -109,6 +103,7 @@ void delete_all(list l) {
         next = l->next;
         free(l);
         l = next;
+
     }
 }
 
@@ -122,65 +117,121 @@ void alles_weg(list *l){
    }
 
 
-int sort(int m, list * l)
+/*void sort(int m, struct list* l)
 {
-    return 0;
+    // Initialize sorted linked list
+    struct le *sorted = NULL;
+
+    // Traverse the given list and insert every
+    // node to sorted
+    struct le *current = *head_ref;
+    while (current != NULL)
+    {
+        // Store next for next iteration
+        struct le *next = current->next;
+
+        // insert current in sorted linked list
+        sortedInsert(&sorted, current);
+
+        // Update current
+        current = next;
+    }
+
+    // Update head_ref to point to sorted linked list
+    *head_ref = sorted;
+
 }
+void sortedInsert(struct node** head_ref, struct node* new_node)
+{
+    struct le* current;
+    //Special case for the head end
+    if (*head_ref == NULL || (*head_ref)->value >= new_node->value)
+    {
+        new_node->next = *head_ref;
+        *head_ref = new_node;
+    }
+    else
+    {
+        //Locate the node before the point of insertion
+        current = *head_ref;
+        while (current->next!=NULL &&
+               current->next->value < new_node->value)
+        {
+            current = current->next;
+        }
+        new_node->next = current->next;
+        current->next = new_node;
+    }
+}
+*/
 
 int main(){
     list Liste=NULL;// erstellt leere Liste
-    printf("\nleere Liste erstellt\n");
+    printf("\nLeere Liste erstellt.\n");
 
-                                                                //printf("\nlistenkopf.next%p",liste->next);
-								//printf("\tlistenkopf.value %d",liste->value);
+    //printf("\nlistenkopf.next%p",liste->next);
+    //printf("\tlistenkopf.value %d",liste->value);
 
-
-								//test length function
+    //test length function
+    printf("\nAufruf length()\n");
+    printf("---------------------------");
     printf("\nElement(e) in der Liste: %d\n",length(Liste));
 
-								// test insert function
+    printf("\nAufruf insert()\n");
+    printf("---------------------------");
+    printf("\nEs werden die Elemente {1,4,3,4,5,6} je an POS 1 der Liste angefuegt.");
+    // test insert function
     insert(1,&Liste);
-    insert(5,&Liste);
-    insert(1,&Liste);
+    insert(4,&Liste);
     insert(3,&Liste);
-    insert(2,&Liste);
-    insert(1,&Liste);
-    
-    
-    
-    
-    
-    printf("\n6 Elemente links angefuegt:\n");
-    
+    insert(4,&Liste);
+    insert(5,&Liste);
+    insert(6,&Liste);
+    printf("\nElement(e) in der Liste: %d\n",length(Liste));
+
+    printf("\nAufruf print_list()\n");
+    printf("---------------------------");
     print_list(Liste);
+
+    //test insert_pos
+    printf("\n\nAufruf insert_pos)\n");
+    printf("---------------------------");
+    insert_pos(4,5,&Liste);
+    print_list(Liste);
+    printf("\nElement mit Wert = 4 an Position 5 angefügt.\n");
+    printf("\nElement(e) in der Liste: %d\n",length(Liste));
+
+
+    /*//test insertion_sort
+    printf("\n\nAufruf sort()\n");
+    printf("---------------------------");
+    sort(&Liste);
+    print_list(Liste);*/
 
     //test delete_elem
-    printf("\n\ncall delete_elem()");
-     delete_elem(1,&Liste);
-     printf("\nalle 1en gelöscht:\n");
-     printf("---------------------------");
-     print_list(Liste);
-
-    
-    
-    
-								//test delete head
-    delete_head(&Liste);
-    printf("\n\nListenkopf geloescht:\n");
+    printf("\n\nAufruf delete_elem()\n");
     printf("---------------------------");
+    delete_elem(4,&Liste);
     print_list(Liste);
+    printf("\nAlle Elemente mit Wert: 4 gelöscht:\n");
 
-    
-    
-								//test delete_all    , Bei delete_all muss noch manuell Liste =NULL gesetzt werden! will man das nicht, kann man alles_weg nehmen
+    //test delete head
+    printf("\n\nAufruf delete_head()\n");
+    printf("---------------------------");
+    delete_head(&Liste);
+    print_list(Liste);
+    printf("\nElement(e) in der Liste: %d\n",length(Liste));
+   
+	//test delete_all    , Bei delete_all muss noch manuell Liste =NULL gesetzt werden! will man das nicht, kann man alles_weg nehmen
+    printf("\n\nAufruf delete_all:\n");
+    printf("---------------------------");
     delete_all(Liste);
-    printf("\n\nAlle Listenelemete geloescht:\n");
-    printf("---------------------------");
-    print_list(Liste); zv
     Liste =NULL;
-    printf("\nHeadpointer wieder auf NULL gesetzt\n");
-    printf("---------------------------");
     print_list(Liste); zv
+    printf("\nElement(e) in der Liste: %d\n",length(Liste));
+
+    /*printf("\nHeadpointer wieder auf NULL gesetzt\n");
+    print_list(Liste); zv*/
     
     return 0;
 }
