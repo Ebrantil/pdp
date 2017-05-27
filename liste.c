@@ -120,7 +120,7 @@ void alles_weg(list *l){
 void sort(struct list *l)
 {
     // Initialize new sorted list
-    listenelement *sorted = NULL;
+    list sorted= NULL;
 
     // Traverse the given list and insert every
     // value to sorted
@@ -161,15 +161,11 @@ void sortedInsert(int m, struct value** sorted, struct value* new_value)
                 new_value->next = listenelement->next;
             listenelement->next = new_value;
         }
-            else {
-                listenelement = listenelement->next;
-                new_value->next = listenelement->next;
-                listenelement->next = new_value;
-            }}
+        new_value->next = value->next;
+        Liste->next = sorted;
     }
-    }
-    */
-
+}
+*/
 
 int main(){
     list Liste=NULL;// erstellt leere Liste
