@@ -20,15 +20,6 @@ struct le {
 typedef struct le listenelement;
 typedef listenelement *list;
 
-void insert(); //adds element with value v to FIRST position of list
-int insert_pos(); //adds element with value v to position 'pos' of list
-void print_list(); //prints ALL elements of list
-int length();//counts ALL elements of list
-int delete_head(); //deletes FIRST element of list
-int delete_elem(); //deletes ALL elements WITH value e from list
-void delete_all(); //deletes ALL elements from list
-void sort(); //create new least and prepare sorting
-
 void insert(int v,list *l){
     listenelement *new;
     new = malloc(sizeof(listenelement));
