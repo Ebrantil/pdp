@@ -1,3 +1,13 @@
+// Praxis der Programmierung
+// Hausaufgabe 1 - liste
+// Abgabedatum: 28.5.2017
+//
+// Gruppennummer: 51
+// Gruppenmitglieder:
+// - Georg Duchrau
+// - Nico Maronde
+// - Maximilian Budwill
+
 #include <stdio.h>
 #include <stdlib.h>
 #define zv printf("\n");  // kurzer zeilenvorschub
@@ -18,8 +28,6 @@ int delete_head(); //deletes FIRST element of list
 int delete_elem(); //deletes ALL elements WITH value e from list
 void delete_all(); //deletes ALL elements from list
 void sort(); //create new least and prepare sorting
-void sortedInsert(); //sort new list by inserting from old list
-
 
 void insert(int v,list *l){
     listenelement *new;
@@ -107,17 +115,6 @@ void delete_all(list l) {
     }
 }
 
-/*
-void alles_weg(list *l){
-
-    while(*l != NULL){
-
-        delete_head(l);
-    }
-   }
-
-*/
-
 void sort(int m, list *l){
 
 	
@@ -156,69 +153,9 @@ void sort(int m, list *l){
 
 }
 
-
-
-
-
-
-/*
-void sort(struct list *l)
-{
-    // Initialize new sorted list
-    list sorted= NULL;
-    // Traverse the given list and insert every
-    // value to sorted
-    struct le *liste = *sorted;
-    while (*l != NULL)
-    {
-        // Store next for next iteration
-        struct le *next = listenelement->next;
-        // insert current in sorted linked list
-        sortedInsert(&sorted, listenelement);
-        // Update current
-        listenelement = next;
-    }
-    // Update listhead to point to sorted list
-    *le = sorted;
-}
-void sortedInsert(int m, struct value** sorted, struct value* new_value)
-{
-    struct le* listenelement;
-    //case for the head end
-    if (*list == NULL || (*list)->value >= new_value->value)
-    {
-        new_value->next = *sorted;
-        *sorted = new_value;
-    }
-    else {
-        //Locate the value before the point of insertion
-        list = *sorted;
-        while (listenelement->next != NULL &&
-               listenelement->next->value < new_value->value) {
-           //sort ascending
-            if (m = -1) {
-                listenelement = listenelement->next;
-                new_value->next = listenelement->next;
-            listenelement->next = new_value;
-        }
-        new_value->next = value->next;
-        Liste->next = sorted;
-    }
-}
-*/
-
 int main(){
     list Liste=NULL;// erstellt leere Liste
-	
-
-
-
-
-
     printf("\nLeere Liste erstellt.\n");
-
-    //printf("\nlistenkopf.next%p",liste->next);
-    //printf("\tlistenkopf.value %d",liste->value);
 
     //test length function
     printf("\nAufruf length()\n");
@@ -255,13 +192,6 @@ int main(){
     printf(":\n");
     print_list(Liste);
     
-
-    /*//test insertion_sort
-    printf("\n\nAufruf sort()\n");
-    printf("---------------------------");
-    sort(&Liste);
-    print_list(Liste);*/
-
     //test delete_elem
     printf("\n\nAufruf delete_elem()\n");
     printf("---------------------------");
