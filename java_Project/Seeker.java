@@ -4,7 +4,7 @@
 **/
 
 
-public class Seeker<T> implements Visitor<T>{
+public class Seeker<T> implements Visitor<Node<T>>{
     
     private Node<T> target;
     private int found;  //== 0 if not found !=0 if found
@@ -22,7 +22,7 @@ public class Seeker<T> implements Visitor<T>{
     
     public int getReport(){ return found; }
 
-    public <T> void process(Node<T> knoten){
+    public  void process(Node<T> knoten){
         
             if (knoten == target){
             

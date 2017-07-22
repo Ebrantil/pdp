@@ -4,9 +4,9 @@
 **/
 
 
-public class ValueGetter implements Visitor{
+public class ValueGetter<T> implements Visitor<Node<T>>{
 
-    public  void process(Node knoten){
+    public  void process(Node<T> knoten){
         
             System.out.println(knoten.getVal());
         

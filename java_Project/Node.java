@@ -65,7 +65,7 @@ public class Node<T>{
          
     }
     
-    public  int visitAll(Visitor v){   //THIS ebnfalls "besuchen???"
+    public int visitAll(Visitor<Node> v){   //THIS ebnfalls "besuchen???"
             //int um ein Arbeiten abseits der Bildschirmausgabe zu ermöglichen...
     
         ArrayList<Node> markinList = new ArrayList<Node>();
@@ -122,7 +122,7 @@ public class Node<T>{
     
     public <S> Boolean isConnected(Node<S> target){
         
-        Seeker<S> s = new Seeker<>(target);
+        Seeker s = new Seeker(target);
         
         if (visitAll(s) == 0) {return false;}
         else {return true;}

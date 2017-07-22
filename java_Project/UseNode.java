@@ -18,6 +18,7 @@ public class UseNode{
         Node<Integer> E = new Node<Integer>("E",8);
         Node<Integer> F = new Node<Integer>("F",17);
         Node<Integer> G = new Node<Integer>("G",9);
+        Node<Integer> H = new Node<Integer>("H",42);
     
         A.connect(F);
         A.connect(G);
@@ -44,7 +45,7 @@ public class UseNode{
         F.visitAll(c);
         System.out.println("G --- B : " + G.isConnected(B));
         System.out.println("G --- D : " + G.isConnected(D));
-        
+        System.out.println("G --- H : " + G.isConnected(H));
         
         
         

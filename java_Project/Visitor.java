@@ -6,7 +6,7 @@
 
 public interface Visitor<T>{
     
-    public <T> void process(Node<T> knoten);
+    public void process(T knoten);
 
 
 }

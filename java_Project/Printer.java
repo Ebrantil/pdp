@@ -4,9 +4,9 @@
 **/
 
 
-public class Printer implements Visitor{
+public class Printer<T> implements Visitor<Node<T>>{
 
-    public  void process(Node knoten){
+    public void process(Node<T> knoten){
         
             System.out.println(knoten.getName());
         
