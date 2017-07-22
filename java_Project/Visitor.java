@@ -4,9 +4,9 @@
 * #####NAMEN#####
 **/
 
-public interface Visitor{
+public interface Visitor<T>{
     
-    public void process(Node knoten);
+    public <T> void process(Node<T> knoten);
 
 
 }

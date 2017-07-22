@@ -10,35 +10,45 @@ public class UseNode{
     public static void main(String[] args){
     
     
-        Node<Integer> Knoten = new Node<Integer>("string des knotens");  
+    
+        Node<Integer> A = new Node<Integer>("A",3);
+        Node<Integer> B = new Node<Integer>("B",8);
+        Node<Integer> C = new Node<Integer>("C",5);
+        Node<Integer> D = new Node<Integer>("D",1);
+        Node<Integer> E = new Node<Integer>("E",8);
+        Node<Integer> F = new Node<Integer>("F",17);
+        Node<Integer> G = new Node<Integer>("G",9);
+    
+        A.connect(F);
+        A.connect(G);
         
+        B.connect(F);
+        B.connect(G);
         
-        int testVal = 23;
+        C.connect(D);
+        C.connect(F);
         
+        D.connect(E);
         
-        Node<Integer> Knoten2 = new Node<Integer>("polunder" , testVal );
-        Node<String> Knoten3 = new Node<String>("KNoten3" , "knoten3s string");
-        
-        
-        Node<Integer> Knoten4 = new Node<Integer>("polunder4" , 44 );
-        Node<String> Knoten5 = new Node<String>("KNoten5" , "knoten5s string");
-        
-        
-        Knoten.connect(Knoten2);
-        Knoten.connect(Knoten3);
-        Knoten.connect(Knoten4);
-        Knoten.connect(Knoten5);
-        
-        //System.out.println(Knoten.adjList.get(0).getName());
-        //System.out.println(Knoten2.adjList.get(0).getName());
+        F.connect(G);
+      
+    
         
         Printer p = new Printer();
         ValueGetter v = new ValueGetter();
         Counter c = new Counter();
         
-        Knoten.visitAll(p);
-        Knoten.visitAll(v);
-        Knoten.visitAll(c);
+      
+        G.visitAll(p);
+        F.visitAll(v);
+        F.visitAll(c);
+        System.out.println("G --- B : " + G.isConnected(B));
+        System.out.println("G --- D : " + G.isConnected(D));
+        
+        
+        
+        
+        
         
         
         

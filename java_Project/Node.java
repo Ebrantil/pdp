@@ -65,36 +65,72 @@ public class Node<T>{
          
     }
     
-    public  void visitAll(Visitor v){   //THIS ebnfalls "besuchen???"
+    public  int visitAll(Visitor v){   //THIS ebnfalls "besuchen???"
+            //int um ein Arbeiten abseits der Bildschirmausgabe zu ermöglichen...
     
         ArrayList<Node> markinList = new ArrayList<Node>();
         markinList.add(this);
         
         LinkedList<Node> processQ = new LinkedList<Node>();
-        processQ.addAll(this.adjList);  // da noch kein Knoten besucht wurde können alle adj. knoten in die Q gepackt werdfen
+        processQ.addAll(this.adjList);  // da noch kein Knoten besucht wurde können alle adj. knoten in die Q gepackt werden
         
         Node dummy;
         
-        while( ! processQ.isEmpty()){    
+        v.process(this); //da JEDEM Knoten "der Prozess" gemacht werden soll, auch dem Startknoten....
+        
+        while( ! processQ.isEmpty()){  
             
-            dummy = processQ.remove();
+            
+            
+            dummy = processQ.removeFirst();
+            if (markinList.contains(dummy)){continue;}// nächster knoten falls dummy bereits besucht
+            
+            
             markinList.add(dummy);
+            
             v.process(dummy);    // führe je nach art des vis. process durch, , in processQ sind nur unbesuchte Knoten
             
             @SuppressWarnings("unchecked")//LOL no more warnings xD
             Iterator<Node> i =  dummy.adjList.iterator();    //!!! Diese Zeile benötigt ein zugängliches adjList
             
             while (i.hasNext()){
-            
+                
                 Node n = i.next();
+               
+         
                 if ( ! markinList.contains(n)) {processQ.add(n);} //quadratischer Aufwand, evtl mit hashing performence verbessern...
             
             }
+            
            
         }
-        if ( v instanceof Counter ) {System.out.println(((Counter)v).getCount());}
+        if ( v instanceof Counter ) {
+            int result = ((Counter)v).getCount();
+            System.out.println(result);
+            return result;
+        }
+        if( v instanceof Seeker ) {
+        
+            int result = ((Seeker)v).getReport();
+            return result;
+        
+        }
+        
+        
+        return 0;
     }
     
+    public <S> Boolean isConnected(Node<S> target){
+        
+        Seeker<S> s = new Seeker<>(target);
+        
+        if (visitAll(s) == 0) {return false;}
+        else {return true;}
+        
+    
+    }
+    @Override
+    public String toString(){return this.name;}
     
     
 }

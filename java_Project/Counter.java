@@ -8,9 +8,9 @@ public class Counter implements Visitor{
 
     private int count;
 
-    public Counter(){ count=1;}
+    public Counter(){ count=0;}
 
-    public void reset(){ count=1;}
+    public void reset(){ count=0;}
     
     public int getCount(){ return count; }
 
